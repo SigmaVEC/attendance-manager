@@ -163,7 +163,7 @@ public class staffMenuUI extends javax.swing.JFrame {
     private void backbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbuttonActionPerformed
         setVisible(false);
     	dispose();
-    	mainUI.main(null);
+    	loginUI.main(null);
     }//GEN-LAST:event_backbuttonActionPerformed
 
 	/**
