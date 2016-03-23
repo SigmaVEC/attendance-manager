@@ -55,17 +55,8 @@ public class setup
         		{
         			e.printStackTrace();
         		}
-        		
-        		if(!util.classExists("ARM_config"))
-        		{
-        			util.SQLUpdate("CREATE DATABASE ARM_config");
-        			util.SQLUpdate("ARM_config","CREATE TABLE stats(IDSize int,StartTime text,EndTime text,SessionNameSize int)");
-        			util.SQLUpdate("ARM_config","INSERT INTO stats VALUES(1,null,null,1)");
-        			util.SQLUpdate("ARM_config","CREATE TABLE classes(SNo int PRIMARY KEY AUTO_INCREMENT,Name text)");
-        			util.SQLUpdate("ARM_config","CREATE TABLE students(IDNo varchar("+util.getServerData("IDSize")+") PRIMARY KEY,Class text)");
-        			util.SQLUpdate("ARM_config","CREATE TABLE staff(IDNo text,Class text,Password text)");
-        			util.SQLUpdate("ARM_config","CREATE TABLE admin(IDNo text,Password text)");
-        		}
+
+			create();
         	}
         }
         
@@ -73,18 +64,8 @@ public class setup
         {
         	try
         	{
-        		if(util.testServerConnection(util.getServerData("Server IP"),util.getServerData("Username"),util.getServerData("Password")))
-        		{
-        			if(!util.classExists("ARM_config"))
-        			{
-        				util.SQLUpdate("CREATE DATABASE ARM_config");
-        				util.SQLUpdate("ARM_config","CREATE TABLE stats(IDSize int,StartTime text,EndTime text,SessionNameSize int)");
-        				util.SQLUpdate("ARM_config","INSERT INTO stats VALUES(1,null,null,1)");
-        				util.SQLUpdate("ARM_config","CREATE TABLE classes(SNo int PRIMARY KEY,Name text)");
-     	    			util.SQLUpdate("ARM_config","CREATE TABLE students(IDNo varchar("+util.getServerData("IDSize")+") PRIMARY KEY,Class text)");
-     	    			util.SQLUpdate("ARM_config","CREATE TABLE staff(IDNo text,Class text,Password text)");
-        				util.SQLUpdate("ARM_config","CREATE TABLE admin(IDNo text,Password text)");
-        			}
+        		if(util.testServerConnection(util.getServerData("Server IP"),util.getServerData("Username"),util.getServerData("Password"))) {
+				create();
         		}
         	}catch(SQLException e)
         	{
@@ -180,6 +161,19 @@ public class setup
 		}
 	}
 	
+	static void create() {
+		if(!util.classExists("ARM_config"))
+                {
+                        util.SQLUpdate("CREATE DATABASE ARM_config");
+                        util.SQLUpdate("ARM_config","CREATE TABLE stats(IDSize int,StartTime text,EndTime text,SessionNameSize int)");
+                        util.SQLUpdate("ARM_config","INSERT INTO stats VALUES(1,null,null,1)");
+                        util.SQLUpdate("ARM_config","CREATE TABLE classes(SNo int PRIMARY KEY AUTO_INCREMENT,Name text,Semester int)");
+                        util.SQLUpdate("ARM_config","CREATE TABLE students(IDNo varchar("+util.getServerData("IDSize")+") PRIMARY KEY,Class text)");
+                        util.SQLUpdate("ARM_config","CREATE TABLE staff(IDNo text,Name text,Class text,Password text)");
+                	util.SQLUpdate("ARM_config","CREATE TABLE admin(IDNo text,Password text)");
+                }
+	}
+
 	static String getString()
 	{
 		String a;
