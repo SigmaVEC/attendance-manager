@@ -101,35 +101,20 @@ public class loginUI extends javax.swing.JFrame {
     private void loginbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginbuttonActionPerformed
 	String idno=usernameinput.getText();
         String password=new String(passwordinput.getPassword());
-        String table="";
-	boolean adminAvailable=false,staffAvailable=false;
-        String[] staffList=util.SQLQuery("ARM_config","SELECT IDNo FROM staff");
+	boolean adminAvailable=false;
 	String[] adminList=util.SQLQuery("ARM_config","SELECT IDNo FROM admin");
 
 	for(int i=0;i<adminList.length;i++)
                 if(idno.equals(adminList[i])) {
                         adminAvailable=true;
-                        table="admin";
 			break;
                 }
 
-	if(!adminAvailable)
-		for(int i=0;i<staffList.length;i++)
-                	if(idno.equals(staffList[i])) {
-                		staffAvailable=true;
-                		table="staff";
-				break;
-			}
-
-        if(staffAvailable || adminAvailable) {
-                if(password.equals(util.SQLQuery("ARM_config","SELECT Password FROM "+table+" WHERE IDNo='"+idno+"'")[0])) {
+        if(adminAvailable) {
+                if(password.equals(util.SQLQuery("ARM_config","SELECT Password FROM admin WHERE IDNo='"+idno+"'")[0])) {
 			setVisible(false);
                         dispose();
-			if(table.equals("staff"))
-                        	staffMenuUI.main(util.SQLQuery("ARM_config","SELECT Class FROM staff WHERE IDNo='"+idno+"'"));
-
-                	else
-                        	adminMenuUI.main(null);
+                        adminMenuUI.main(null);
             	}
 
            	else
@@ -164,8 +149,8 @@ public class loginUI extends javax.swing.JFrame {
          	* For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          	*/
         	try {
-                    	javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
-        	} catch (ClassNotFoundException ex) {
+        		util.setLookAndFeel();
+		} catch (ClassNotFoundException ex) {
             		java.util.logging.Logger.getLogger(loginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         	} catch (InstantiationException ex) {
             		java.util.logging.Logger.getLogger(loginUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
