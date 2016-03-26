@@ -96,6 +96,7 @@ public class loginUI extends javax.swing.JFrame {
         );
 
         pack();
+	setLocationtRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginbuttonActionPerformed
