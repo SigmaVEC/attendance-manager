@@ -42,9 +42,14 @@ public class addNamelist extends javax.swing.JFrame {
         table = new javax.swing.JTable();
         applybutton = new javax.swing.JButton();
         deletebutton = new javax.swing.JButton();
-        tablemodel = new javax.swing.table.DefaultTableModel(new String[]{"ID Number","Name"},0);
-		idno = new ArrayList<String>();
-		name = new ArrayList<String>();
+        tablemodel = new javax.swing.table.DefaultTableModel(new String[]{"ID Number","Name"},0) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                        return false;
+                }
+        };
+	idno = new ArrayList<String>();
+	name = new ArrayList<String>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -209,7 +214,7 @@ public class addNamelist extends javax.swing.JFrame {
 
     private void applybuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applybuttonActionPerformed
         setVisible(false);
-        addTimetable.main(this);
+        assignStaff.main(this);
     }//GEN-LAST:event_applybuttonActionPerformed
 
 	/**

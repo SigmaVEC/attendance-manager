@@ -52,7 +52,12 @@ public class addTimetable extends javax.swing.JFrame {
         table = new javax.swing.JTable();
         createbutton = new javax.swing.JButton();
         progressbar = new javax.swing.JProgressBar();
-	tablemodel = new javax.swing.table.DefaultTableModel(new String[]{"Day","Timings","Subject"},0);
+	tablemodel = new javax.swing.table.DefaultTableModel(new String[]{"Day","Timings","Subject"},0) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                        return false;
+                }
+        };
         day = new ArrayList<String>();
         starttime = new ArrayList<String>();
         endtime = new ArrayList<String>();

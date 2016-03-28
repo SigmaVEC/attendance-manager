@@ -169,7 +169,7 @@ public class setup
                         util.SQLUpdate("ARM_config","INSERT INTO stats VALUES(1,null,null,1)");
                         util.SQLUpdate("ARM_config","CREATE TABLE classes(SNo int PRIMARY KEY AUTO_INCREMENT,Name text,Semester int)");
                         util.SQLUpdate("ARM_config","CREATE TABLE students(IDNo varchar("+util.getServerData("IDSize")+") PRIMARY KEY,Class text)");
-                        util.SQLUpdate("ARM_config","CREATE TABLE staff(IDNo text,Name text,Class text,Password text)");
+                        util.SQLUpdate("ARM_config","CREATE TABLE staff(IDNo text,Name text,Department text,Class text,Password text)");
                 	util.SQLUpdate("ARM_config","CREATE TABLE admin(IDNo text,Password text)");
                 }
 	}
